@@ -1,4 +1,4 @@
-package desafio_java;
+package uni_lab;
 
 public class Produto {
     String nome;

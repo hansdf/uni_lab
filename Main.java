@@ -1,4 +1,4 @@
-package desafio_java;
+package uni_lab;
 
 public class Main {
     public static void main(String[] args) {
