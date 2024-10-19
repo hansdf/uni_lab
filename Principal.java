@@ -26,31 +26,111 @@ public class Principal {
         */
 
         int escolhaMenu = 0;
+        Scanner menuScanner = new Scanner(System.in);
+
         while (escolhaMenu != 3) {
             System.out.println("Escolha como proseguir:");
             System.out.println("(1) criar uma loja");
             System.out.println("(2) criar um produto");
             System.out.println("(3) sair");
-            Scanner menuScanner = new Scanner(System.in);
-            int input = menuScanner.nextInt();
-            escolhaMenu = input;
+            
+            escolhaMenu = menuScanner.nextInt();
 
-            if (input == 1) {
+            if (escolhaMenu == 1) {
+                // Criar uma loja
+                System.out.print("Digite o nome da loja: ");
+                String nomeLoja = menuScanner.next();
                 
+                System.out.print("Digite a quantidade de funcionários: ");
+                int qtdFuncionarios = menuScanner.nextInt();
+                
+                System.out.print("Digite o salário base dos funcionários: ");
+                int salarioBase = menuScanner.nextInt();
+                
+                // Entrada de endereço
+                System.out.println("Digite o endereço da loja:");
+                System.out.print("Nome da rua: ");
+                String nomeRua = menuScanner.next();
+                
+                System.out.print("Cidade: ");
+                String cidade = menuScanner.next();
+                
+                System.out.print("Estado: ");
+                String estado = menuScanner.next();
+                
+                System.out.print("País: ");
+                String pais = menuScanner.next();
+                
+                System.out.print("CEP: ");
+                String cep = menuScanner.next();
+                
+                System.out.print("Número: ");
+                String numero = menuScanner.next();
+                
+                System.out.print("Complemento: ");
+                String complemento = menuScanner.next();
+
+                // Criar o endereço da loja
+                Endereco enderecoLoja = new Endereco(nomeRua, cidade, estado, pais, cep, numero, complemento);
+                
+                // Entrada para a data de fundação da loja
+                System.out.println("Digite a data de fundação da loja:");
+                
+                System.out.print("Dia: ");
+                int diaFundacao = menuScanner.nextInt();
+                
+                System.out.print("Mês: ");
+                int mesFundacao = menuScanner.nextInt();
+                
+                System.out.print("Ano: ");
+                int anoFundacao = menuScanner.nextInt();
+                
+                // Criar a data de fundação
+                Data dataFundacao = new Data(diaFundacao, mesFundacao, anoFundacao);
+
+                // Criar a loja
+                Loja loja = new Loja(nomeLoja, qtdFuncionarios, salarioBase, enderecoLoja, dataFundacao);
+                System.out.println("Loja criada: " + loja);
             }
 
-            if (input == 2) {
+            if (escolhaMenu == 2) {
+                // Criar um produto (mesma lógica anterior)
+                System.out.print("Digite o nome do produto: ");
+                String nomeProduto = menuScanner.next();
                 
+                System.out.print("Digite o preço do produto: ");
+                int precoProduto = menuScanner.nextInt();
+                
+                // Entrada para a data de validade
+                System.out.print("Digite o dia de validade: ");
+                int diaValidade = menuScanner.nextInt();
+                
+                System.out.print("Digite o mês de validade: ");
+                int mesValidade = menuScanner.nextInt();
+                
+                System.out.print("Digite o ano de validade: ");
+                int anoValidade = menuScanner.nextInt();
+
+                // Criando a data de validade
+                Data dataValidade = new Data(diaValidade, mesValidade, anoValidade);
+                
+                // Criando o produto
+                Produto produto = new Produto(nomeProduto, precoProduto, dataValidade);
+                System.out.println("Produto criado: " + produto);
             }
 
-            if (input == 3) {
+            if (escolhaMenu == 3) {
+                System.out.println("Saindo...");
                 break;
             }
 
-            if (input > 3) {
-                System.out.println("Opção inválida");
+            if (escolhaMenu > 3 || escolhaMenu < 1) {
+                System.out.println("Opção inválida, tente novamente.");
             }
         }
+
+        menuScanner.close();
     }
 }
+
 
