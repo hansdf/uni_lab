@@ -11,18 +11,24 @@ public class Produto {
         this.dataValidade = dataValidade;
     }
 
-    public boolean estaVencido(Data estaVencido) {
-        // recebe uma data por parâmetro (objeto do tipo Data) e retorna verdadeiro caso o produto esteja vencido em relação a esta data ou falso caso contrário.
-        if (condition:var(boolean)) {
-            
+    public boolean estaVencido(Data dataAtual) {
+        // Comparação de ano
+        if (dataAtual.getAno() > dataValidade.getAno()) {
             return true;
-        } else {
-            
+        } else if (dataAtual.getAno() < dataValidade.getAno()) {
             return false;
         }
-
+        
+        // Se o ano for o mesmo, comparar o mês
+        if (dataAtual.getMes() > dataValidade.getMes()) {
+            return true;
+        } else if (dataAtual.getMes() < dataValidade.getMes()) {
+            return false;
+        }
+    
+        // Se o mês for o mesmo, comparar o dia
+        return dataAtual.getDia() > dataValidade.getDia();
     }
-
 
     public String getNome() {
         return nome;
