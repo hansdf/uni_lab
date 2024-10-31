@@ -1,29 +1,24 @@
 package uni_lab;
 
 public class Loja {
-    String nome;
-    int quantidadeFuncionarios;
-    int salarioBaseFuncionario;
-    Endereco enderecoLoja;
-    Data dataFundacao;
-    Produto[] estoqueProdutos;
+    private String nome;
+    private int quantidadeFuncionarios;
+    private int salarioBaseFuncionario;
+    private Endereco enderecoLoja;
+    private Data dataFundacao;
+    private Produto[] estoqueProdutos;
 
-
-    public Loja(String nome, int quantidadeFuncionarios, int salarioBaseFuncionario, Endereco enderecoLoja, Data dataFundacao, Produto[] estoqueProdutos) {
+    public Loja(String nome, int quantidadeFuncionarios, int salarioBaseFuncionario, Endereco enderecoLoja, Data dataFundacao, int tamanhoEstoque) {
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = salarioBaseFuncionario;
         this.enderecoLoja = enderecoLoja;
         this.dataFundacao = dataFundacao;
-        this.estoqueProdutos = estoqueProdutos;
+        this.estoqueProdutos = new Produto[tamanhoEstoque]; // Inicializa o array com o tamanho especificado
     }
 
-    public Loja(String nome, int quantidadeFuncionarios, Endereco enderecoLoja, Data dataFundacao) {
-        this.nome = nome;
-        this.quantidadeFuncionarios = quantidadeFuncionarios;
-        this.salarioBaseFuncionario = -1;
-        this.enderecoLoja = enderecoLoja;
-        this.dataFundacao = dataFundacao;
+    public Loja(String nome, int quantidadeFuncionarios, Endereco enderecoLoja, Data dataFundacao, int tamanhoEstoque) {
+        this(nome, quantidadeFuncionarios, -1, enderecoLoja, dataFundacao, tamanhoEstoque); // Chama o construtor principal com salário base -1
     }
 
     public String getNome() {
@@ -48,6 +43,30 @@ public class Loja {
 
     public void setSalarioBaseFuncionario(int salarioBaseFuncionario) {
         this.salarioBaseFuncionario = salarioBaseFuncionario;
+    }
+
+    public Endereco getEnderecoLoja() {
+        return enderecoLoja;
+    }
+
+    public void setEnderecoLoja(Endereco enderecoLoja) {
+        this.enderecoLoja = enderecoLoja;
+    }
+
+    public Data getDataFundacao() {
+        return dataFundacao;
+    }
+
+    public void setDataFundacao(Data dataFundacao) {
+        this.dataFundacao = dataFundacao;
+    }
+
+    public Produto[] getEstoqueProdutos() {
+        return estoqueProdutos;
+    }
+
+    public void setEstoqueProdutos(Produto[] estoqueProdutos) {
+        this.estoqueProdutos = estoqueProdutos;
     }
 
     @Override
@@ -76,6 +95,3 @@ public class Loja {
         }
     }
 }
-
-
-
