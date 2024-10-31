@@ -6,13 +6,16 @@ public class Loja {
     int salarioBaseFuncionario;
     Endereco enderecoLoja;
     Data dataFundacao;
+    Produto[] estoqueProdutos;
 
-    public Loja(String nome, int quantidadeFuncionarios, int salarioBaseFuncionario, Endereco enderecoLoja, Data dataFundacao) {
+
+    public Loja(String nome, int quantidadeFuncionarios, int salarioBaseFuncionario, Endereco enderecoLoja, Data dataFundacao, Produto[] estoqueProdutos) {
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = salarioBaseFuncionario;
         this.enderecoLoja = enderecoLoja;
         this.dataFundacao = dataFundacao;
+        this.estoqueProdutos = estoqueProdutos;
     }
 
     public Loja(String nome, int quantidadeFuncionarios, Endereco enderecoLoja, Data dataFundacao) {
@@ -47,9 +50,13 @@ public class Loja {
         this.salarioBaseFuncionario = salarioBaseFuncionario;
     }
 
+    @Override
     public String toString() {
-        return "Loja: " + nome + ", Funcionários: " + quantidadeFuncionarios + 
-               ", Salário Base: " + (salarioBaseFuncionario == -1 ? "Não Definido" : salarioBaseFuncionario);
+        return "Loja: " + nome +
+               "\nQuantidade de Funcionários: " + quantidadeFuncionarios +
+               "\nSalário Base dos Funcionários: " + salarioBaseFuncionario +
+               "\nEndereço: " + enderecoLoja +
+               "\nData de Fundação: " + dataFundacao;
     }
 
     public int gastosComSalario() {
