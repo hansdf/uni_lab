@@ -3,95 +3,81 @@ package uni_lab;
 public class Loja {
     private String nome;
     private int quantidadeFuncionarios;
-    private int salarioBaseFuncionario;
-    private Endereco enderecoLoja;
+    private double salarioBaseFuncionario;
+    private Endereco endereco;
     private Data dataFundacao;
     private Produto[] estoqueProdutos;
 
-    public Loja(String nome, int quantidadeFuncionarios, int salarioBaseFuncionario, Endereco enderecoLoja, Data dataFundacao, int tamanhoEstoque) {
+    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao, int tamanhoEstoque) {
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
-        this.salarioBaseFuncionario = salarioBaseFuncionario;
-        this.enderecoLoja = enderecoLoja;
+        this.endereco = endereco;
         this.dataFundacao = dataFundacao;
-        this.estoqueProdutos = new Produto[tamanhoEstoque]; // Inicializa o array com o tamanho especificado
+        this.estoqueProdutos = new Produto[tamanhoEstoque];
     }
 
-    public Loja(String nome, int quantidadeFuncionarios, Endereco enderecoLoja, Data dataFundacao, int tamanhoEstoque) {
-        this(nome, quantidadeFuncionarios, -1, enderecoLoja, dataFundacao, tamanhoEstoque); // Chama o construtor principal com salário base -1
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getQuantidadeFuncionarios() {
-        return quantidadeFuncionarios;
-    }
-
-    public void setQuantidadeFuncionarios(int quantidadeFuncionarios) {
-        this.quantidadeFuncionarios = quantidadeFuncionarios;
-    }
-
-    public int getSalarioBaseFuncionario() {
-        return salarioBaseFuncionario;
-    }
-
-    public void setSalarioBaseFuncionario(int salarioBaseFuncionario) {
+    public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, int tamanhoEstoque) {
+        this(nome, quantidadeFuncionarios, endereco, dataFundacao, tamanhoEstoque);
         this.salarioBaseFuncionario = salarioBaseFuncionario;
     }
 
-    public Endereco getEnderecoLoja() {
-        return enderecoLoja;
-    }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public void setEnderecoLoja(Endereco enderecoLoja) {
-        this.enderecoLoja = enderecoLoja;
-    }
+    public int getQuantidadeFuncionarios() { return quantidadeFuncionarios; }
+    public void setQuantidadeFuncionarios(int quantidadeFuncionarios) { this.quantidadeFuncionarios = quantidadeFuncionarios; }
 
-    public Data getDataFundacao() {
-        return dataFundacao;
-    }
+    public double getSalarioBaseFuncionario() { return salarioBaseFuncionario; }
+    public void setSalarioBaseFuncionario(double salarioBaseFuncionario) { this.salarioBaseFuncionario = salarioBaseFuncionario; }
 
-    public void setDataFundacao(Data dataFundacao) {
-        this.dataFundacao = dataFundacao;
-    }
+    public Endereco getEndereco() { return endereco; }
+    public void setEndereco(Endereco endereco) { this.endereco = endereco; }
 
-    public Produto[] getEstoqueProdutos() {
-        return estoqueProdutos;
-    }
+    public Data getDataFundacao() { return dataFundacao; }
+    public void setDataFundacao(Data dataFundacao) { this.dataFundacao = dataFundacao; }
 
-    public void setEstoqueProdutos(Produto[] estoqueProdutos) {
-        this.estoqueProdutos = estoqueProdutos;
-    }
+    public Produto[] getEstoqueProdutos() { return estoqueProdutos; }
 
-    @Override
-    public String toString() {
-        return "Loja: " + nome +
-               "\nQuantidade de Funcionários: " + quantidadeFuncionarios +
-               "\nSalário Base dos Funcionários: " + salarioBaseFuncionario +
-               "\nEndereço: " + enderecoLoja +
-               "\nData de Fundação: " + dataFundacao;
-    }
-
-    public int gastosComSalario() {
-        if (salarioBaseFuncionario == -1) {
-            return -1;
-        }
+    public double gastosComSalario() {
         return quantidadeFuncionarios * salarioBaseFuncionario;
     }
 
     public char tamanhoDaLoja() {
-        if (quantidadeFuncionarios < 10) {
-            return 'P'; 
-        } else if (quantidadeFuncionarios <= 30) {
-            return 'M'; 
-        } else {
-            return 'G';
+        if (quantidadeFuncionarios < 10) return 'P';
+        else if (quantidadeFuncionarios <= 30) return 'M';
+        else return 'G';
+    }
+
+    public boolean insereProduto(Produto p) {
+        for (int i = 0; i < estoqueProdutos.length; i++) {
+            if (estoqueProdutos[i] == null) {
+                estoqueProdutos[i] = p;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean removeProduto(String nomeProduto) {
+        for (int i = 0; i < estoqueProdutos.length; i++) {
+            if (estoqueProdutos[i] != null && estoqueProdutos[i].getNome().equals(nomeProduto)) {
+                estoqueProdutos[i] = null;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return nome + " - " + endereco + " - Funcionários: " + quantidadeFuncionarios;
+    }
+
+    public void imprimeProdutos() {
+        for (Produto produto : estoqueProdutos) {
+            if (produto != null) {
+                System.out.println(produto);
+            }
         }
     }
 }
