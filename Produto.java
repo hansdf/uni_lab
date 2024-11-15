@@ -21,7 +21,6 @@ public class Produto {
     public Data getDataValidade() { return dataValidade; }
 
     public boolean estaVencido(Data dataAtual) {
-        // Check if the product expiration date has passed.
         if (dataAtual.getAno() > dataValidade.getAno()) return true;
         if (dataAtual.getAno() == dataValidade.getAno()) {
             if (dataAtual.getMes() > dataValidade.getMes()) return true;
