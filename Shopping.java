@@ -11,7 +11,6 @@ public class Shopping {
         this.lojas = new Loja[maxLojas];
     }
 
-    // Métodos de acesso
     public String getNome() {
         return nome;
     }
@@ -32,7 +31,6 @@ public class Shopping {
         return lojas;
     }
 
-    // Método toString para exibir as informações do shopping
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -47,7 +45,6 @@ public class Shopping {
         return sb.toString();
     }
 
-    // Método para inserir uma loja no shopping
     public boolean insereLoja(Loja novaLoja) {
         for (int i = 0; i < lojas.length; i++) {
             if (lojas[i] == null) {
@@ -55,10 +52,9 @@ public class Shopping {
                 return true;
             }
         }
-        return false; // Array está cheio, não há espaço para inserir nova loja
+        return false; // Array cheio, sem espaço para inserir nova loja
     }
 
-    // Método para remover uma loja pelo nome
     public boolean removeLoja(String nomeLoja) {
         for (int i = 0; i < lojas.length; i++) {
             if (lojas[i] != null && lojas[i].getNome().equals(nomeLoja)) {
